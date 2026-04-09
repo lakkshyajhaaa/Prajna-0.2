@@ -73,8 +73,8 @@ def compute_dynamic_thresholds(H, K, Q_norm):
     K: Num classes considered for entropy 
     Q_norm: Normalized image quality [0, 1]
     """
-    T_base_acc = 0.60
-    T_base_rev = 0.35
+    T_base_acc = 0.72
+    T_base_rev = 0.62
     alpha = 0.1
     beta = 0.15
     
@@ -95,7 +95,7 @@ def responsibility_score(scaled_top1_sim, margin, certainty):
     """
     Computes final responsibility score dynamically.
     """
-    return 0.6 * scaled_top1_sim + 0.2 * margin + 0.2 * certainty
+    return 0.7 * scaled_top1_sim + 0.15 * margin + 0.15 * certainty
 
 def final_decision(R, T_accept, T_review):
     """
