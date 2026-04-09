@@ -29,7 +29,7 @@ def calculate_similarity_and_margin(query_emb, database_embs):
     
     return scores, float(margin)
 
-def compute_entropy_and_certainty(similarities, tau=0.1):
+def compute_entropy_and_certainty(similarities, tau=0.03):
     """
     Computes Shannon Entropy and normalized Certainty from top-K similarities.
     similarities: list of [0, 1] scaled similarities for top K matches.

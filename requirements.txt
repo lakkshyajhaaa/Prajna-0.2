@@ -1,6 +1,10 @@
 torch
 torchvision
+torchaudio
+streamlit
 numpy
 pandas
-streamlit
 Pillow
+facenet-pytorch
+opencv-python-headless
+kagglehub
