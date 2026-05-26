@@ -9,3 +9,8 @@ facenet-pytorch
 opencv-python-headless
 kagglehub
 requests
+scipy
+plotly
+onnxruntime
+pytest
+pytest-mock
