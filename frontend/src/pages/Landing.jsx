@@ -41,10 +41,10 @@ const Landing = () => {
       
       <motion.div className="btn-group" variants={itemVariants}>
         <Link to="/verify" className="btn btn-primary">
-          INITIATE VERIFY <ArrowRight size={18} />
+          VERIFY IDENTITY <ArrowRight size={18} />
         </Link>
         <Link to="/database" className="btn btn-secondary">
-          ACCESS VAULT <Fingerprint size={18} />
+          MANAGE PROFILES <Fingerprint size={18} />
         </Link>
       </motion.div>
       
