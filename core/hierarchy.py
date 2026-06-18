@@ -351,7 +351,7 @@ def hierarchical_inference(
                 responsibility_delta=None,
                 compute_units=COMPUTE_STAGE1,
                 total_latency_ms=(time.perf_counter() - pipeline_start) * 1000,
-                routing_explanation_s1=explain_routing(rr1),
+                routing_explanation_s1=explain_routing(rr1, name1),
             )
         else:
             # ESCALATE to Stage 2
@@ -426,8 +426,8 @@ def hierarchical_inference(
     if stage1_metrics is not None:
         compute_used += COMPUTE_STAGE1
 
-    explain_s1 = explain_routing(stage1_metrics.routing) if stage1_metrics else ""
-    explain_s2 = explain_routing(rr2)
+    explain_s1 = explain_routing(stage1_metrics.routing, stage1_metrics.top1_identity) if stage1_metrics else ""
+    explain_s2 = explain_routing(rr2, name2)
 
     return PipelineRecord(
         stages_run=stages_run,

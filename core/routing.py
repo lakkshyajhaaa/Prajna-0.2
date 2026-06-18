@@ -284,22 +284,24 @@ def _classify_escalation_reasons(
     return reasons
 
 
-def explain_routing(record: RoutingRecord) -> str:
+def explain_routing(record: RoutingRecord, identity_name: str = "") -> str:
     """
     Generates a one-sentence human-readable explanation of a routing decision.
     Used in the Verify tab and audit log.
     """
     stage_name = f"Stage {record.stage}"
 
+    id_text = f" against '{identity_name}'" if identity_name else ""
+
     if record.action == "ACCEPT":
         return (
             f"{stage_name} routing score {record.routing_score:.3f} ≥ ρ_accept={record.rho_accept:.3f}: "
-            f"confidence sufficient for terminal ACCEPT decision."
+            f"confidence sufficient for terminal ACCEPT{id_text}."
         )
     elif record.action == "REJECT":
         return (
             f"{stage_name} routing score {record.routing_score:.3f} ≤ ρ_reject={record.rho_reject:.3f}: "
-            f"similarity too low for any positive decision. Terminal REJECT."
+            f"similarity{id_text} too low for any positive decision. Terminal REJECT."
         )
     else:
         reasons_str = "; ".join(record.escalation_reasons[:2]) if record.escalation_reasons else "combined uncertainty"
@@ -308,13 +310,13 @@ def explain_routing(record: RoutingRecord) -> str:
             return (
                 f"{stage_name} routing score {record.routing_score:.3f} in escalation band "
                 f"({record.rho_reject:.2f}–{record.rho_accept:.2f}). "
-                f"Reason: {reasons_str}. Escalating to deep-scan neural network (Stage 2)."
+                f"Reason: {reasons_str}. Escalating verification{id_text} to deep-scan neural network (Stage 2)."
             )
         else:
             return (
                 f"{stage_name} routing score {record.routing_score:.3f} in escalation band "
                 f"({record.rho_reject:.2f}–{record.rho_accept:.2f}). "
-                f"Reason: {reasons_str}. Flagged for manual human review."
+                f"Reason: {reasons_str}. Verification{id_text} flagged for manual human review."
             )
 
 
