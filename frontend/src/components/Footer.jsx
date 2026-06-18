@@ -15,7 +15,7 @@ const Footer = () => {
       color: 'var(--text-secondary)'
     }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-        <span>&copy; {new Date().getFullYear()} Prajna Framework. All rights reserved.</span>
+        <span>Prajna Framework - Experimental Release</span>
         <span>
           Developed by <a href="https://lakkshyajha.me" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'none' }}>Lakkshya Jha</a>
         </span>
